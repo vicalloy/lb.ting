@@ -98,7 +98,7 @@ namespace Lb.Ting.Common
     public class SongList
     {
         public string channel { get; set; }
-        public int channelid { get; set; }
+        public object channelid { get; set; }
         public object artistid { get; set; }
         public object avatar { get; set; }
         public string count { get; set; }
@@ -158,9 +158,14 @@ namespace Lb.Ting.Common
         public string resourceType { get; set; }
         public AudioTrack toTrack(string xcode)
         {
-            String url = songLink + "?xcode=" + xcode;
+            Uri albumUri = null;
+            if (null != songPicBig && songPicBig.Length > 10) 
+            {
+                albumUri = new Uri(songPicBig, UriKind.Absolute);
+            }
+            String url = showLink;//songLink + "?xcode=" + xcode;
             return new AudioTrack(new Uri(url, UriKind.Absolute),
-                songName, artistName, albumName, new Uri(songPicBig, UriKind.Absolute));
+                songName, artistName, albumName, albumUri);
 
         }
     }

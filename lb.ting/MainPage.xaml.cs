@@ -143,6 +143,7 @@ namespace lb.ting
             catch (Exception)
             {
                 UpdateTracks();
+                return;
             }
             string url = Cfg.GET_SONGS_DETAIL_URL + songListRoot.result.GetSongIds();
             Utils.WebClientAsync(wcSongDetailList, url);
