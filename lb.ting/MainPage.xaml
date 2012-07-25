@@ -1,0 +1,67 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="lb.ting.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot 是包含所有页面内容的根网格-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="437*"/>
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="90" />
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel 包含应用程序的名称和页标题-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="txtChannel" Text="电台：" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="txtCurrentTrack" Text="加载中……" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="txtArtist" Text="by ..." Style="{StaticResource PhoneTextNormalStyle}"/>
+        </StackPanel>
+
+        <Grid x:Name="coverPanel" Grid.Row="1" Margin="12,0">
+            <Image Margin="20" Name="imgCover" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center" Height="200" Width="200" />
+        </Grid>
+        
+        <Grid x:Name="btnPanel" Grid.Row="3" Margin="12,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Content="频道" Name="btnChannel" Grid.Column="0" Click="btnChannel_Click" />
+            <Button Content=">" Name="btnPlay" Grid.Column="1" Click="btnPlay_Click" />
+            <Button Content=">>|" Name="btnNext" Click="btnNext_Click" Grid.Column="2" />
+        </Grid>
+
+        <!--ContentPanel - 在此处放置其他内容-->
+        <Grid x:Name="timerContentPanel" Grid.Row="2" Margin="12,0" Grid.RowSpan="1">
+            <Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="txtTrackPos" Text="0:00" Style="{StaticResource PhoneTextTitle2Style}" Margin="20"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+    </Grid>
+ 
+    <!--演示 ApplicationBar 用法的示例代码-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="按钮 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="按钮 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="菜单项 1"/>
+                <shell:ApplicationBarMenuItem Text="菜单项 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>
