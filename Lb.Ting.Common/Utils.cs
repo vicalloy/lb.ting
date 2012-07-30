@@ -68,7 +68,13 @@ namespace Lb.Ting.Common
         {
             if (client.IsBusy)
                 client.CancelAsync();
-            client.DownloadStringAsync(new Uri(url, UriKind.Absolute));
+            try
+            {
+                client.DownloadStringAsync(new Uri(url, UriKind.Absolute));
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public static void SetImageUrl(Image img, Uri uri, Uri defaultUri)

@@ -12,7 +12,7 @@ namespace lb.ting
     {
         private WebClient wcSongList = new WebClient();
         private WebClient wcSongDetailList = new WebClient();
-        private Channel channel;//用于判断是否进行了电台切换
+        private Boolean paused = false;//用于判断是否进行了电台切换
 
         // 构造函数
         public MainPage()
@@ -97,12 +97,15 @@ namespace lb.ting
             {
                 case PlayState.Playing:
                     BackgroundAudioPlayer.Instance.Pause();
+                    paused = true;
                     break;
                 case PlayState.Paused:
                     BackgroundAudioPlayer.Instance.Play();
+                    paused = false;
                     break;
                 case PlayState.Stopped:
                     BackgroundAudioPlayer.Instance.SkipNext();
+                    paused = false;
                     break;
             }
             InitUI();
@@ -126,7 +129,7 @@ namespace lb.ting
             }
 
             Utils.WriteFile(Cfg.SONGS_FILENAME, songsRoot.ToJson());
-            if (!BackgroundAudioPlayer.Instance.PlayerState.Equals(PlayState.Playing))
+            if (!BackgroundAudioPlayer.Instance.PlayerState.Equals(PlayState.Playing) && !paused)
             {
                 BackgroundAudioPlayer.Instance.SkipNext();
             }
@@ -156,6 +159,7 @@ namespace lb.ting
             Channel c = cfg.channel;
             if (cfg.channelChanged && BackgroundAudioPlayer.Instance.Track != null)
             {
+                paused = false;
                 BackgroundAudioPlayer.Instance.Stop();
             }
             cfg.channelChanged = false;
@@ -172,7 +176,7 @@ namespace lb.ting
             Utils.WebClientAsync(wcSongList, url);
         }
 
-        private void btnChannel_Click(object sender, RoutedEventArgs e)
+        private void btnChannel_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/ChannelPage.xaml", UriKind.Relative));
         }
