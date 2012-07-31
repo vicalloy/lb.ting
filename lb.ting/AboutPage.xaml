@@ -27,7 +27,15 @@
         </StackPanel>
 
         <!--ContentPanel - 在此处放置其他内容-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0"></Grid>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,6,0,0" Name="textBlock1" Text="版本：1.0.0" VerticalAlignment="Top" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,46,0,0" Text="作者：vicalloy" VerticalAlignment="Top" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,86,0,0" Text="E-MAIL：zbirder@gmail.com" VerticalAlignment="Top" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,126,0,0" Text="作者微博：" VerticalAlignment="Top" />
+            <HyperlinkButton HorizontalAlignment="Left" VerticalAlignment="Top" Margin="102,126,0,0" TargetName="_blank" NavigateUri="http://www.weibo.com/vicalloy" Content="http://www.weibo.com/vicalloy"/>
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="12,166,0,0" Text="作者博客：" VerticalAlignment="Top" />
+            <HyperlinkButton HorizontalAlignment="Left" VerticalAlignment="Top" Margin="102,166,0,0" TargetName="_blank" NavigateUri="http://haoluobo.com" Content="http://haoluobo.com"/>
+        </Grid>
     </Grid>
  
     <!--演示 ApplicationBar 用法的示例代码-->

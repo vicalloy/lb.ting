@@ -48,6 +48,7 @@
             <shell:ApplicationBarIconButton IconUri="/Images/ff.png" Text="下一首" Click="btnNext_Click" />
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="关于" Click="miAbout_Click" />
+                <shell:ApplicationBarMenuItem Text="给我评分" Click="miMarketplaceReview_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

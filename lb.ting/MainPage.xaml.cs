@@ -5,6 +5,7 @@ using System.Windows.Media.Imaging;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.BackgroundAudio;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 using Lb.Ting.Common;
 
 namespace lb.ting
@@ -190,6 +191,11 @@ namespace lb.ting
         private void miAbout_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+        }
+
+        private void miMarketplaceReview_Click(object sender, EventArgs e)
+        {
+            new MarketplaceReviewTask().Show();
         }
 
     }
