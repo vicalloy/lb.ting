@@ -77,12 +77,11 @@ namespace Lb.Ting.Common
             }
         }
 
-        public static void SetImageUrl(Image img, Uri uri, Uri defaultUri)
+        public static BitmapImage GetImgFromUri(Uri uri, Uri defaultUri)
         {
             WebClient wc = new WebClient();
             wc.Headers["Referer"] = "http://www.baidu.com";
             BitmapImage bi = new BitmapImage();
-            img.Source = bi;
             wc.OpenReadCompleted += (s, e) =>
             {
                 try
@@ -95,6 +94,7 @@ namespace Lb.Ting.Common
                 }
             };
             wc.OpenReadAsync(uri);
+            return bi;
         }
 
         public static void SetImageUrl(ImageBrush img, Uri uri, Uri defaultUri)

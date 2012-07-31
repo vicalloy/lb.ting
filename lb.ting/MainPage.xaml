@@ -16,9 +16,8 @@
     <!--LayoutRoot 是包含所有页面内容的根网格-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="437*"/>
-            <RowDefinition Height="90*" />
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="527*"/>
             <RowDefinition Height="90" />
         </Grid.RowDefinitions>
 
@@ -31,16 +30,6 @@
 
         <Grid x:Name="coverPanel" Grid.Row="1" Margin="12,0">
             <Image Margin="20" Name="imgCover" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center" Height="200" Width="200" />
-        </Grid>
-        
-        <Grid x:Name="btnPanel" Grid.Row="3" Margin="12,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Button Content=">" Name="btnPlay" Grid.Column="1" Click="btnPlay_Click" />
-            <Button Content=">>|" Name="btnNext" Click="btnNext_Click" Grid.Column="2" />
         </Grid>
 
         <!--ContentPanel - 在此处放置其他内容-->
@@ -55,10 +44,10 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Images/flag.png" Text="频道" Click="btnChannel_Click" />
-            <shell:ApplicationBarIconButton IconUri="/Images/pause.png" Text="暂停"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/ff.png" Text="下一首"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/pause.png" Text="暂停" Click="btnPlay_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Images/ff.png" Text="下一首" Click="btnNext_Click" />
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="关于"/>
+                <shell:ApplicationBarMenuItem Text="关于" Click="miAbout_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

@@ -97,7 +97,8 @@ namespace lb.ting
                         //default img
                         continue;
                     }
-                    Utils.SetImageUrl(ib, new Uri(url, UriKind.Absolute), null);
+                    ib.ImageSource = Utils.GetImgFromUri(new Uri(url, UriKind.Absolute), null);
+
                     ib.Stretch = Stretch.None;
                     ib.AlignmentY = 0;//AlignmentY.Top
                     btn.VerticalContentAlignment = System.Windows.VerticalAlignment.Bottom;

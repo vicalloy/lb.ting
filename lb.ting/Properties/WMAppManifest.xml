@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{202ed8d2-9fb7-4654-a873-02d0e7cfefc3}" Title="lb.ting" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="lb.ting author" Description="Sample description" Publisher="lb.ting">
+  <App xmlns="" ProductID="{202ed8d2-9fb7-4654-a873-02d0e7cfefc3}" Title="百度电台" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="lb.ting author" Description="Sample description" Publisher="lb.ting">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES" />
@@ -29,7 +29,7 @@
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>lb.ting</Title>
+          <Title>百度电台</Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>

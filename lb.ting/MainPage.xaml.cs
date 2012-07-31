@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.BackgroundAudio;
+using Microsoft.Phone.Shell;
 using Lb.Ting.Common;
 
 namespace lb.ting
@@ -13,11 +14,13 @@ namespace lb.ting
         private WebClient wcSongList = new WebClient();
         private WebClient wcSongDetailList = new WebClient();
         private Boolean paused = false;//用于判断是否进行了电台切换
+        private ApplicationBarIconButton btnPlay;
 
         // 构造函数
         public MainPage()
         {
             InitializeComponent();
+            btnPlay = this.ApplicationBar.Buttons[1] as ApplicationBarIconButton;
             wcSongList.DownloadStringCompleted += GetSongListComplated;
             wcSongDetailList.DownloadStringCompleted += GetSongDetailListComplated;
             BackgroundAudioPlayer.Instance.PlayStateChanged += new EventHandler(Instance_PlayStateChanged);
@@ -46,13 +49,15 @@ namespace lb.ting
             switch (BackgroundAudioPlayer.Instance.PlayerState)
             {
                 case PlayState.Playing:
-                    btnPlay.Content = "| |";     // Change to pause button
+                    btnPlay.Text = "暂停";
+                    btnPlay.IconUri = new Uri("/Images/pause.png", UriKind.Relative);
                     //btnPlay.IsEnabled = false;
                     break;
 
                 case PlayState.Paused:
                 case PlayState.Stopped:
-                    btnPlay.Content = ">";     // Change to play button
+                    btnPlay.Text = "播放";
+                    btnPlay.IconUri = new Uri("/Images/play.png", UriKind.Relative);
                     break;
             }
 
@@ -61,7 +66,7 @@ namespace lb.ting
             {
                 txtCurrentTrack.Text = track.Title;
                 txtArtist.Text = track.Artist;
-                Utils.SetImageUrl(imgCover, track.AlbumArt, null);
+                imgCover.Source = Utils.GetImgFromUri(track.AlbumArt, null);
             }
             Cfg cfg = Cfg.getCfg();
             if (cfg.channel != null) txtChannel.Text = "电台： " + cfg.channel.name;
@@ -85,32 +90,6 @@ namespace lb.ting
             //是：播放歌曲
         }
 
-        private void btnNext_Click(object sender, RoutedEventArgs e)
-        {
-            BackgroundAudioPlayer.Instance.SkipNext();
-            UpdateTracks();
-        }
-
-        private void btnPlay_Click(object sender, RoutedEventArgs e)
-        {
-            switch (BackgroundAudioPlayer.Instance.PlayerState)
-            {
-                case PlayState.Playing:
-                    BackgroundAudioPlayer.Instance.Pause();
-                    paused = true;
-                    break;
-                case PlayState.Paused:
-                    BackgroundAudioPlayer.Instance.Play();
-                    paused = false;
-                    break;
-                case PlayState.Stopped:
-                    BackgroundAudioPlayer.Instance.SkipNext();
-                    paused = false;
-                    break;
-            }
-            InitUI();
-        }
-
         void Instance_PlayStateChanged(object sender, EventArgs e)
         {
             InitUI();
@@ -126,6 +105,7 @@ namespace lb.ting
             catch (Exception)
             {
                 UpdateTracks();
+                return;
             }
 
             Utils.WriteFile(Cfg.SONGS_FILENAME, songsRoot.ToJson());
@@ -179,6 +159,37 @@ namespace lb.ting
         private void btnChannel_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/ChannelPage.xaml", UriKind.Relative));
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            switch (BackgroundAudioPlayer.Instance.PlayerState)
+            {
+                case PlayState.Playing:
+                    BackgroundAudioPlayer.Instance.Pause();
+                    paused = true;
+                    break;
+                case PlayState.Paused:
+                    BackgroundAudioPlayer.Instance.Play();
+                    paused = false;
+                    break;
+                case PlayState.Stopped:
+                    BackgroundAudioPlayer.Instance.SkipNext();
+                    paused = false;
+                    break;
+            }
+            InitUI();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            BackgroundAudioPlayer.Instance.SkipNext();
+            UpdateTracks();
+        }
+
+        private void miAbout_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
         }
 
     }
